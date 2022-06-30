@@ -10,7 +10,7 @@ Prefix=`pwd`
 tar -xzf "zlib-"$Version_zlib".tar.gz"
 cd "zlib-"$Version_zlib
 ./configure --prefix=$Prefix
-make && make install
+make -j 8 && make install
 cd ..
 rm -rf "zlib-"$Version_zlib
 
@@ -18,7 +18,7 @@ rm -rf "zlib-"$Version_zlib
 tar -xjf "hdf5-"$Version_hdf5".tar.bz2"
 cd "hdf5-"$Version_hdf5
 ./configure --prefix=$Prefix --with-zlib=$Prefix --enable-hl
-make && make install
+make -j 8 && make install
 cd ..
 rm -rf "hdf5-"$Version_hdf5
 
@@ -26,7 +26,7 @@ rm -rf "hdf5-"$Version_hdf5
 tar -xzf "netcdf-c-"$Version_netcdf_c".tar.gz"
 cd "netcdf-c-"$Version_netcdf_c
 ./configure CPPFLAGS="-I$Prefix/include" LDFLAGS="-L$Prefix/lib" --prefix=$Prefix --disable-dap
-make && make install
+make -j 8 && make install
 cd ..
 rm -rf "netcdf-c-"$Version_netcdf_c
 
@@ -35,6 +35,6 @@ tar -xzf "netcdf-fortran-"$Version_netcdf_fortran".tar.gz"
 cd "netcdf-fortran-"$Version_netcdf_fortran
 export LD_LIBRARY_PATH=$Prefix"/lib":$LD_LIBRARY_PATH
 ./configure CPPFLAGS="-I$Prefix/include" LDFLAGS="-L$Prefix/lib" --prefix=$Prefix --enable-shared
-make && make install
+make -j 8 && make install
 cd ..
 rm -rf "netcdf-fortran-"$Version_netcdf_fortran
